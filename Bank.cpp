@@ -2,7 +2,9 @@
 
 Bank::Bank(){}
 
-Bank::Bank(Account *){}
+Bank::Bank(Account* ac){
+    accounts.push_back(ac);
+}
 
 // methods
 void Bank::createAccount(const std::string& accountType, const std::string& accountNumber, double initialBalance){

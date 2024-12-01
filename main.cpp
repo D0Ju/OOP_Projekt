@@ -3,6 +3,8 @@
 
 int main() {
   Bank bank;
+  //Account ac("Savings", "da", 3);
+  //Bank bank2(&ac);
   int choice;
 
   do {
