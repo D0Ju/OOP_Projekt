@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+
 class Account{
     public:
     Account();
@@ -16,11 +17,12 @@ class Account{
     double getBalance();
 
     //methods
-    virtual void showAccountDetails();
+    virtual void showAccountDetails() = 0;
     virtual void deposit(double);
-    virtual void withdraw(double);
+    virtual void withdraw(double) = 0;
 
-
+    //destructor
+    virtual ~Account();
     protected:
     std::string accType;
     std::string accNum;

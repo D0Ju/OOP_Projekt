@@ -1,13 +1,28 @@
 #include <iostream>
 #include "Bank.h"
+#include <unistd.h>
 
 int main() {
   Bank bank;
-  //Account ac("Savings", "da", 3);
-  //Bank bank2(&ac);
+  //Saving Accounts
+  bank.createAccount("Savings", "S001", 100);
+  bank.createAccount("Savings", "S002", 200);
+  bank.createAccount("Savings", "S003", 300);
+  bank.createAccount("Savings", "S004", 400);
+  bank.createAccount("Savings", "S005", 500);
+  bank.createAccount("Savings", "S006", 600);
+  //Current Accounts
+  bank.createAccount("Current", "C001", 100);
+  bank.createAccount("Current", "C002", 200);
+  bank.createAccount("Current", "C003", 300);
+  bank.createAccount("Current", "C004", 400);
+  bank.createAccount("Current", "C005", 500);
+  bank.createAccount("Current", "C006", 600);
+  system("cls");
   int choice;
 
   do {
+    
     std::cout << "\n=== Bank Management System ===\n";
     std::cout << "1. Create Account\n";
     std::cout << "2. Deposit Money\n";
@@ -80,6 +95,8 @@ int main() {
       }
     default:
         std::cout << "Invalid choice. Please try again.\n";
+        sleep(2);
+        system("cls");
     }
-} while (choice != 6);
+  } while (choice != 6);
 }

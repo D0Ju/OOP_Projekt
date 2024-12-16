@@ -18,6 +18,7 @@ class Bank{
     void displayAccounts();
     //destruktor
     ~Bank();
+    
     private:
     std::vector<Account*> accounts;
     char name[50];

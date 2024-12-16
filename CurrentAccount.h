@@ -8,6 +8,8 @@ class CurrentAccount : public Account{
     //methods
     void withdraw(double) override;
     void showAccountDetails() override;
+    //destructor
+    virtual ~CurrentAccount();
 
     private:
     double overdraftLimit;

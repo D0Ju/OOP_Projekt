@@ -31,20 +31,22 @@ void Bank::withdrawMoney(const std::string &accountNumber, double amount){
     for(const auto& account : accounts){
         if(account->getAccountNumber() == accountNumber){
             account->withdraw(amount);
-            std::cout << "Withdrew " << amount << " from account " << accountNumber << std::endl;
         }
     }
 } 
 
 
 void Bank::displayAccountDetails(const std::string &accountNumber){
+    bool accountFound = false;
     for(const auto& account : accounts){
         if(account->getAccountNumber() == accountNumber){
             account->showAccountDetails();
+            accountFound = true;
+            break;
         }
-        else{
-            std::cout << "Account not found." << std::endl;
-        }
+    }
+    if(!accountFound){
+        std::cout << "Account not found." << std::endl;
     }
 }
 

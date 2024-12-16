@@ -12,6 +12,8 @@ class SavingsAccount : public Account{
     void withdraw(double) override;
     void applyInterest();
     void showAccountDetails() override;
+    //destructor
+    virtual ~SavingsAccount();
 
     private:
     double interestRate;

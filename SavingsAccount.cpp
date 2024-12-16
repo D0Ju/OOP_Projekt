@@ -9,6 +9,7 @@ interestRate(INTEREST_RATE), transactionLimit(TRANS_LIMIT){}
 void SavingsAccount::deposit(double amount){
     if (transactionCount < transactionLimit) {
         balance += amount;
+        std::cout << "New account balance: "<< balance << std::endl; 
         transactionCount++;
     } else {
         std::cout << "Transaction limit reached. Cannot deposit.\n";
@@ -19,6 +20,9 @@ void SavingsAccount::withdraw(double amount){
     if (transactionCount < transactionLimit) {
         if (amount <= balance) {
             balance -= amount;
+            //dodano ovdje prije bilo u bank.cpp, i ako je bio exceedan broj pokazala bi se poruka da su novci povuceni
+            std::cout << "Withdrew " << amount << " from account " << accNum << std::endl;
+            std::cout << "New account balance: "<< balance << std::endl; 
             transactionCount++;
     }else{
         std::cout << "Insufficient funds.\n";
@@ -39,3 +43,5 @@ void SavingsAccount::showAccountDetails(){
                 << ", Transactions this month: " << transactionCount
                 << ", Type: " << accType << "\n";
 }
+
+SavingsAccount::~SavingsAccount(){}

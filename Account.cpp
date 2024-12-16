@@ -52,6 +52,7 @@ void Account::deposit(double amount)
 {
     if(amount > 0){
         balance += amount;
+        std::cout << "New account balance: "<< balance << std::endl; 
     }else{
         std::cout << "You can't deposit a negative value!" << std::endl;
     }
@@ -66,3 +67,5 @@ void Account::withdraw(double amount){
         showAccountDetails();
     }
 }
+
+Account::~Account(){}
