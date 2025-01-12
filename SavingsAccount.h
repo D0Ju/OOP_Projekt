@@ -17,6 +17,8 @@ class SavingsAccount : public Account{
 
     private:
     double interestRate;
+    int balanceWithInterest;
+    int months = 6;
     int transactionCount = 0;
     int transactionLimit;
 };
