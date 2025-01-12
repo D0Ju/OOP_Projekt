@@ -1,4 +1,5 @@
 #include "Account.h"
+#include "MyExceptions.h"
 
 Account::Account(){}
 
@@ -17,7 +18,6 @@ void Account::setAccountType(std::string accType){
     }
     */
     this->accType = accType;
-    std::cout << accType << " account created successfully.\n";
 }
 void Account::setAccountNumber(std::string accNum){
     this->accNum = accNum;
@@ -25,7 +25,7 @@ void Account::setAccountNumber(std::string accNum){
 
 void Account::setBalance(double balance){
     if(balance < 0){
-        std::cout << "Error: Balance cannot be negative." << std::endl;
+        throw NegativeBalance();
     }
     else this->balance = balance;
 }
@@ -48,13 +48,12 @@ void Account::showAccountDetails(){
     std::cout << "Account Details: \n" << "Type: " << accType << "\nAccount Number: " << accNum << "\nBalance: " << balance << std::endl;
 }
 
-void Account::deposit(double amount)
-{
+void Account::deposit(double amount){
     if(amount > 0){
         balance += amount;
         std::cout << "New account balance: "<< balance << std::endl; 
     }else{
-        std::cout << "You can't deposit a negative value!" << std::endl;
+        throw NegativeBalance();
     }
 }
 
@@ -63,7 +62,7 @@ void Account::withdraw(double amount){
         balance -= amount;
         showAccountDetails();
     }else {
-        std::cout << "Insufficient funds.\n Your balance is: " << std::endl;
+        throw InsufficientFunds();
         showAccountDetails();
     }
 }

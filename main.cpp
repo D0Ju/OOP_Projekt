@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Bank.h"
 #include <unistd.h>
-
+#include <exception>
 int main() {
   Bank bank;
   //Saving Accounts
@@ -43,9 +43,19 @@ int main() {
         std::cin >> accountType;
         std::cout << "Enter account number: ";
         std::cin >> accountNumber;
-        std::cout << "Enter initial balance: ";
-        std::cin >> initialBalance;
+        try{
+          std::cout << "Enter initial balance: ";
+          std::cin >> initialBalance;
+          if (std::cin.fail()) {
+                std::cin.clear();              
+                std::cin.ignore(1000, '\n');  
+                throw std::invalid_argument("Invalid input. Please enter a number.");
+            }
         bank.createAccount(accountType, accountNumber, initialBalance);
+        }
+        catch (std::invalid_argument &e){
+          std::cout << e.what() << std::endl;
+        }
         break;
       }
     case 2: 
@@ -55,9 +65,25 @@ int main() {
         double amount;
         std::cout << "Enter account number: ";
         std::cin >> accountNumber;
-        std::cout << "Enter amount to deposit: ";
-        std::cin >> amount;
-        bank.depositMoney(accountNumber, amount);
+        try{
+          std::cout << "Enter amount to deposit: ";
+          std::cin >> amount;
+          if (std::cin.fail()) {
+                std::cin.clear();              
+                std::cin.ignore(1000, '\n');  
+                throw std::invalid_argument("Invalid input. Please enter a number.");
+            }
+        }
+        catch (std::invalid_argument &e){
+          std::cout << e.what() << std::endl;
+          break;
+        }
+        try{
+            bank.depositMoney(accountNumber, amount);
+          }
+          catch(MyExceptions &e){
+            std::cout << e.getMsg() << std::endl;
+          }
         break;
       }
     case 3: 
@@ -67,9 +93,26 @@ int main() {
         double amount;
         std::cout << "Enter account number: ";
         std::cin >> accountNumber;
-        std::cout << "Enter amount to withdraw: ";
-        std::cin >> amount;
-        bank.withdrawMoney(accountNumber, amount);
+        try{
+          std::cout << "Enter amount to withdraw: ";
+          std::cin >> amount;
+          if (std::cin.fail()) {
+                std::cin.clear();              
+                std::cin.ignore(1000, '\n');  
+                throw std::invalid_argument("Invalid input. Please enter a number.");
+            }
+        }
+        catch (std::invalid_argument &e){
+          std::cout << e.what() << std::endl;
+          break;
+        }
+        try{
+            bank.withdrawMoney(accountNumber, amount);
+          } 
+          catch(MyExceptions &e){
+            std::cout << e.getMsg() << std::endl;
+          }
+        
         break;
       }
     case 4: 
@@ -78,7 +121,12 @@ int main() {
         std::string accountNumber;
         std::cout << "Enter account number: ";
         std::cin >> accountNumber;
-        bank.displayAccountDetails(accountNumber);
+        try{
+          bank.displayAccountDetails(accountNumber);
+        }
+        catch(MyExceptions &e){
+          std::cout << e.getMsg() << std::endl;
+        }
         break;
       }
     case 5:
@@ -95,6 +143,8 @@ int main() {
       }
     default:
         std::cout << "Invalid choice. Please try again.\n";
+        std::cin.clear();              
+        std::cin.ignore(1000, '\n');
         sleep(2);
         system("cls");
     }
