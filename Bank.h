@@ -1,6 +1,7 @@
 #include "Account.h"
 #include "SavingsAccount.h"
 #include "CurrentAccount.h"
+#include "MyExceptions.h"
 #include <vector>
 
 //centralna klasa upravlja accountovima, userima, operacijama
@@ -21,7 +22,7 @@ class Bank{
     
     private:
     std::vector<Account*> accounts;
-    char name[50];
-    std::string lastName;
+    //char name[50];
+    //std::string lastName;
 
 };
